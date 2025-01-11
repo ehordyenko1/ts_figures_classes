@@ -5,6 +5,8 @@ export interface Figure {
 }
 
 export class Triangle implements Figure {
+  shape = 'triangle';
+
   color: string;
 
   a: number;
@@ -37,6 +39,8 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
+  shape = 'circle';
+
   color: string;
 
   radius: number;
@@ -57,6 +61,8 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
+  shape = 'rectangle';
+
   color: string;
 
   width: number;
@@ -66,7 +72,7 @@ export class Rectangle implements Figure {
   constructor(height: number, width: number, color: string) {
     this.height = height;
 
-    if (height < 0 && width < 0) {
+    if (height <= 0 || width <= 0) {
       throw new Error('Height and width must be greater than zero');
     }
 
@@ -95,15 +101,3 @@ function getInfo(figure: Figure): string {
 
   return `A ${figure.color} ${shapeName} - ${area}`;
 }
-
-const redRectangle = new Rectangle(3, 5, 'red');
-
-getInfo(redRectangle); // 'A red rectangle - 15.00'
-
-const greenCircle = new Circle('green', 1);
-
-getInfo(greenCircle); // 'A green circle - 3.14'
-
-const redTriangle = new Triangle('red', 3, 4, 5);
-
-getInfo(redTriangle); // 'A red triangle - 6.00'
